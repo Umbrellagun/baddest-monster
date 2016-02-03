@@ -6,7 +6,7 @@ Base User Stories:
 * As a user, I will battle random enemies in order to claim those 'lands'
 * As a user, I will be able to battle the other player by attempting to claim the other players 'land'
 * As a user, I will have a certain amount of movement points for navigating to 'lands'
-A8s a user, I will receive random benefits after claiming a land such an extra movement point, a (temporary?) stat increase, or teleportation to any 'land'
+* As a user, I will receive random benefits after claiming a land such an extra movement point, a (temporary?) stat increase, or teleportation to any 'land'
 
 Bonus User Stories:
 * As a user, I will be able to obtain unique features depending on the level and monster
@@ -16,3 +16,5 @@ Bonus User Stories:
 * As a user, I will be able to create creatures (or other monsters) to protect their lands
 * As a user, I will be able to change the way their monster looks by leveling it up
 * As a user, I will be able to level up the creatures at their various land/town locations
+
+Wire Frame
