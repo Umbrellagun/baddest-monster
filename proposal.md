@@ -17,4 +17,8 @@ Bonus User Stories:
 * As a user, I will be able to change the way their monster looks by leveling it up
 * As a user, I will be able to level up the creatures at their various land/town locations
 
-Wire Frame
+Wire Frame:
+
+![](wireframe-battle.jpg)
+
+![](wireframe-gameboard.jpg)
