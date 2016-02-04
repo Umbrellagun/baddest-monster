@@ -4,8 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Baddest Monster</title>
-	<link rel="stylesheet" href="baddest.css">
-	<script type="text/javascript" src="jquery-2.2.0.min.js"></script>
+	<link rel="stylesheet" href="css/baddest.css">
+	<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 </head>
 
 <body>
@@ -14,15 +14,22 @@
 		<div id="header">
 			<div id="title">Baddest Monster</div>
 		</div>
-    <button>Start New Game</button>
+    <div id="text"></div>
+    <button id="start">Start New Game</button>
 		<div id="game">
-      <div id="monster1" class="monster"><img src=""></div>
-      <div id="monster2" class="monster"><img src=""></div>
-      <div id="monster3" class="monster"><img src=""></div>
+      <div class="monster">
+        <img src="" id="monster0" data=0>
+      </div>
+      <div class="monster">
+        <img src="" id="monster1" data=1>
+      </div>
+      <div class="monster">
+        <img src="" id="monster2" data=2>
+      </div>
     </div>
 	</div>
 
-  <script type="text/javascript" src="baddest.js"></script>
+  <script type="text/javascript" src="js/baddest.js"></script>
 
 </body>
 
