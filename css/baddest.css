@@ -1,0 +1,46 @@
+#content{
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+
+#title{
+  margin: 20px;
+  font: 32px serif;
+}
+
+#start{
+  margin:20px
+}
+
+#game{
+  display: flex;
+  justify-content: center;
+}
+
+#monster0, #monster1, #monster2{
+  width: 200px;
+  height: 200px;
+}
+
+.monster{
+  margin: 40px;
+}
+
+#box1, #box3{
+  display: flex;
+  margin: 30px 33% 30px 33%;
+}
+
+#box2{
+  display: flex;
+  margin: 30px 37% 30px 37%;
+}
+
+.land {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin: 0 auto;
+}
