@@ -168,13 +168,6 @@ var gameBoard = {
       gameBoard.playerPosition1 = $(this).attr('data');
       game.currentPlayer = 2;
       game.player1.moves--;
-      var moves1 = game.player1.moves;
-      moves1--;
-      var moves2 = game.player2.moves;
-      //doesn't work
-      if((moves1 + moves2) === 0){
-        game.winner();
-      }
 
     } else if ((game.currentPlayer === 2) && (game.player2.moves > 0)){
 
@@ -184,13 +177,9 @@ var gameBoard = {
       gameBoard.playerPosition2 = $(this).attr('data');
       game.currentPlayer = 1;
       game.player2.moves--;
-      var moves1 = game.player1.moves;
-      var moves2 = game.player2.moves;
-      moves2--;
-      //doesn't work
-      if((moves1 + moves2) === 0){
-        game.winner();
-      }
+
+    } else {
+      game.winner();
     }
 
     gameBoard.renderPositions();
