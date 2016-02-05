@@ -10,9 +10,9 @@ var enemies = [
 ];
 
 var monsterPicks = [
-    {name: 'Bat', img: 'img/dark.gif', health: 110, moves: 10},
-    {name: 'Slime', img: 'img/slime.gif', health: 220, moves: 10},
-    {name: 'Octo', img: 'img/octo.gif', health: 330, moves: 10}
+    {name: 'Bat', img: 'img/dark.gif', health: 110, moves: 10, points: 0},
+    {name: 'Slime', img: 'img/slime.gif', health: 220, moves: 10, points: 0},
+    {name: 'Octo', img: 'img/octo.gif', health: 330, moves: 10, points: 0}
 ];
 
 function Monster(monster) {
@@ -54,28 +54,30 @@ var randomEnemy = Math.floor(Math.random() * newArray.length) + 1;
 
 var game = {
 
+  //maybe combine into an array in natural order, player1 = array[0]
+  //player2 = array[1], random enemy = array[2] and .pop()s when dead?
   player1: '',
   player2: '',
   currentEnemy: '',
   currentPlayer: '',
 
   start: function(){
-
     game.player1 = false;
     game.player2 = false;
     game.currentEnemy = '';
     game.currentPlayer = 1; //move to after?
 
+    $('#game').children().remove();
     $('#text').text('Player 1, pick a monster!');
 
     //generates monster images and onclicks
     for (var i = 0; i < monsterPicks.length; i++){
 
+      $('#game').append('<div class="monster"><img src="monster' + i + '" id="monster' + i + '" data="' + i + '"></div>');
+
       var $monster = $('#monster' + i);
 
-      $monster.show();
       $monster.attr('src', monsterPicks[i].img);
-      $monster.off();
       $monster.click(function(){
 
         if(game.player2){
@@ -99,10 +101,13 @@ var game = {
 
   },
 
-  winner: function(){
-
   //calculates each player's score
-
+  winner: function(){
+    if (game.player1.points > game.player2.points){
+      $('#text').text('Player 1 wins!');
+    } else {
+      $('#text').text('Player 2 wins!');
+    }
   },
 
 };
@@ -118,12 +123,13 @@ var gameBoard = {
 
     $('#game').children().remove();
 
-    var boardLength = this.board.length;
+    $('#game').append('<div id="moves"></div>');
 
     //generates map
     $('#game').append('<div id="box1"></div><div id="box2"></div><div id="box3"></div>')
     $('#game').css('display', 'block');
 
+    var boardLength = this.board.length;
     //creates lands and click events
     for (var i = 0; i < boardLength; i++){
 
@@ -135,36 +141,71 @@ var gameBoard = {
 
       $('#box' + box).append('<div class="land" id="land' + i + '" data="' + i + '">');
 
-        $('#land' + i).click(function(){
-          //currently works on any land, have to write a function to prevent teleportation
-          if (game.currentPlayer === 1){
-            gameBoard.playerPosition1 = $(this).attr('data');
-            game.currentPlayer = 2;
-          } else {
-            gameBoard.playerPosition2 = $(this).attr('data');
-            game.currentPlayer = 1;
-          }
-        });
+      $('#land' + i).click(gameBoard.move);
 
       }
 
-    //throw into a function
-    $('#text').text('Player 1\'s turn.');
-    //set players to starting positions
+    //set players to starting positions.
     this.board[0] = 1;
     this.board[7] = 2;
     this.playerPosition1 = this.board.indexOf(1);
     this.playerPosition2 = this.board.indexOf(2);
-    //display player positions. throw into a function
+
+    this.renderPositions();
+    this.renderUi();
+
+  },
+  //can move anywhere
+  //players stop being able to move after 0 moves, but game doesn't end
+  //players can move to the same location they are on and it take movement points away
+  move: function(){
+
+    if ((game.currentPlayer === 1) && (game.player1.moves > 0)){
+
+      var playerToken = $('#land' + gameBoard.playerPosition1.toString());
+      playerToken.css('background-image', 'url("")');
+
+      gameBoard.playerPosition1 = $(this).attr('data');
+      game.currentPlayer = 2;
+      game.player1.moves--;
+
+    } else if ((game.currentPlayer === 2) && (game.player2.moves > 0)){
+
+      var playerToken = $('#land' + gameBoard.playerPosition2.toString());
+      playerToken.css('background-image', 'url("")');
+
+      gameBoard.playerPosition2 = $(this).attr('data');
+      game.currentPlayer = 1;
+      game.player2.moves--;
+
+    } else {
+      game.winner();
+    }
+
+    gameBoard.renderPositions();
+    gameBoard.renderUi();
+
+  },
+
+  renderPositions: function(){
+    //display player positions.
     var playerToken = $('#land' + gameBoard.playerPosition1.toString());
     playerToken.css('background-image', 'url(' + game.player1.img + ')');
-    playerToken.css('background-size', 'contain');
+
     var playerToken = $('#land' + gameBoard.playerPosition2.toString());
     playerToken.css('background-image', 'url(' + game.player2.img + ')');
-    playerToken.css('background-size', 'contain');
 
+  },
+
+  renderUi: function(){
+    if(game.currentPlayer === 1){
+      $('#text').text('Player 1\'s turn.');
+      $('#moves').text('Movement Points: ' + game.player1.moves);
+    } else {
+      $('#text').text('Player 2\'s turn.');
+      $('#moves').text('Movement Points: ' + game.player2.moves);
+    }
   }
-
 
 }
 
