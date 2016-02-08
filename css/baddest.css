@@ -1,3 +1,8 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 #content{
   display: block;
   justify-content: center;
@@ -13,9 +18,33 @@
   margin:20px
 }
 
+#container{
+  /*position: absolute;
+  right:50%;*/
+}
+
 #game{
   display: flex;
   justify-content: center;
+}
+
+#board{
+  justify-content: center;
+  background-size: cover;
+  width: 900px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  right: -50%;
+}
+
+#battle{
+  display: none;
+  justify-content: center;
+  background-size: cover;
+  width: 900px;
+  height: 500px;
+  margin: 0 auto;
 }
 
 #monster0, #monster1, #monster2{
@@ -29,23 +58,75 @@
 
 #box1, #box3{
   display: flex;
-  margin: 30px 33% 30px 33%;
+  position: relative;
+  top: 30px;
 }
 
 #box2{
   display: flex;
-  margin: 30px 37% 30px 37%;
+  margin: 100px 18% 100px 18%;
 }
 
 .land {
-  width: 30px;
-  height: 30px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  border: 2px solid black;
+  border: solid black;
+  border-width: 3px;
   margin: 0 auto;
   background-size: cover;
 }
 
 #moves {
-  
+
+}
+
+#p1, #p2{
+  margin: 0 10px 0 10px;
+}
+
+#p1status, #p2status{
+  border: 2px solid black;
+  background-color: white;
+}
+
+#p1hp, #p2hp{
+  border-bottom: 1px solid black;
+}
+
+#p1hp, #p2hp{
+  float: right;
+}
+
+
+#p1img, #p2img{
+  width: 250px;
+  height: 250px;
+  padding: 20px;
+  position: relative;
+  top: 125px;
+}
+
+
+#p1attack, #p2attack{
+  border: 2px solid black;
+  background-color: white;
+  width: 50%;
+}
+#p2attack{
+  float: right;
+}
+#p1elemental, #p2elemental{
+  border: 2px solid black;
+  background-color: white;
+  width: 50%;
+}
+#p2elemental{
+  float: right;
+}
+
+.battleDisplay{
+  width: 400px;
+  height: 400px;
+  padding: 20px;
 }
